@@ -3,6 +3,8 @@ import modules.database as db
 import qrcode
 from io import BytesIO
 
+PERMANENT_URL = "https://attendance-app-8dkqufve4pz4ryxbz9xvga.streamlit.app/"
+
 def generate_qr_image(url):
     """Generates a QR code image from a URL string."""
     qr = qrcode.QRCode(version=1, box_size=10, border=5)
@@ -25,23 +27,22 @@ def show_dashboard(user):
     with tab1:
         st.subheader("Start a New Class Session")
         
-        col1, col2 = st.columns(2)
+        col1, col2 = st.columns([2, 1])
         with col1:
             course_code = st.selectbox("Select Course", ["MAT312", "PHY101", "CSC202"])
         
         with col2:
             # TEACHER MUST ENTER THEIR IP ADDRESS HERE
             # To find it: Open CMD -> type 'ipconfig' -> look for IPv4 Address
-            base_url = st.text_input("My Laptop IP (e.g., 192.168.1.5)", value="localhost")
-            port = "8501"
+            st.info(f"Linking to: {PERMANENT_URL}")
 
         if st.button("Generate Attendance QR", type="primary"):
-            # 1. Create Session in Database
+            # 1. Create Session
             session_id = db.create_session(course_code, user['username'])
             
-            # 2. Construct the Link
-            # This link includes the 'session' parameter that the Student UI looks for
-            link = f"http://{base_url}:{port}/?session={session_id}"
+            # 2. Use the Hardcoded Link automatically
+            clean_url = PERMANENT_URL.rstrip("/") 
+            link = f"{clean_url}/?session={session_id}"
             
             # 3. Generate Image
             qr_img = generate_qr_image(link)
@@ -49,7 +50,6 @@ def show_dashboard(user):
             # 4. Show Result
             st.success(f"Session Active! ID: {session_id}")
             st.image(qr_img, caption=f"Scan to attend {course_code}", width=350)
-            st.code(link, language="text") # Show the link for debugging
             
 
     # --- TAB 2: HISTORY & REPORTS ---
@@ -98,4 +98,5 @@ def show_dashboard(user):
                     data=csv,
                     file_name=f"attendance_{selected_session_id}.csv",
                     mime="text/csv"
+
                 )
