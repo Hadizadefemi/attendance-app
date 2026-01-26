@@ -1,0 +1,5 @@
+username,password,name,role
+admin,1234,Admin User,Admin
+student1,1234,John Doe,Student
+student2,1234,Jane Smith,Student
+prof_smith,pass,Dr. Alistair Smith,Lecturer

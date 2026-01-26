@@ -1,0 +1,10 @@
+session_id,course_code,date,created_by
+MATH_01,MAT312,2026-01-10,prof_smith
+MATH_02,MAT312,2026-01-12,prof_smith
+MATH_03,MAT312,2026-01-14,prof_smith
+PHY_01,PHY101,2026-01-10,prof_smith
+0e02eb20,PHY101,2026-01-25,prof_smith
+14f52fc9,PHY101,2026-01-26,prof_smith
+df80fb71,CSC202,2026-01-26,prof_smith
+2b693479,CSC202,2026-01-26,prof_smith
+6cd6180c,CSC202,2026-01-26,prof_smith
