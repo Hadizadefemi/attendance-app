@@ -1,4 +1,4 @@
-# Smart Attendance System (Streamlit)
+# [Smart Attendance System](https://attendance-app-8dkqufve4pz4ryxbz9xvga.streamlit.app/)
 
 A web-based student attendance system built with Python and Streamlit. This application replaces manual paper attendance with a secure, digital QR Code workflow. It includes role-based access for Students, Lecturers, and Administrators.
 
